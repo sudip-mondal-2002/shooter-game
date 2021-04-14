@@ -31,4 +31,9 @@ private:
 	void LookUp(float AxisValue);
 	void MoveRight(float AxisValue);
 	void LookRight(float AxisValue);
+	void GamepadLookUp(float AxisValue);
+	void GamepadLookRight(float AxisValue);
+
+	UPROPERTY(EditAnywhere)
+	float RotationRate = 50;
 };

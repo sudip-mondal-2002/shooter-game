@@ -2,6 +2,7 @@
 
 #include "Shooter.h"
 #include "Components/InputComponent.h"
+#include "Engine/World.h"
 
 // Sets default values
 AShooter::AShooter()
@@ -32,6 +33,8 @@ void AShooter::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AShooter::MoveRight);
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &AShooter::LookRight);
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAxis(TEXT("GamepadLookUp"), this, &AShooter::GamepadLookUp);
+	PlayerInputComponent->BindAxis(TEXT("GamepadLookRight"), this, &AShooter::GamepadLookRight);
 }
 
 void AShooter::MoveForward(float AxisValue)
@@ -52,4 +55,14 @@ void AShooter::MoveRight(float AxisValue)
 void AShooter::LookRight(float AxisValue) 
 {
 	AddControllerYawInput(AxisValue);
+}
+
+void AShooter::GamepadLookUp(float AxisValue) 
+{
+	AddControllerPitchInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AShooter::GamepadLookRight(float AxisValue) 
+{
+	AddControllerYawInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
 }
