@@ -3,7 +3,7 @@
 #include "Shooter.h"
 #include "Components/InputComponent.h"
 #include "Engine/World.h"
-#include "Gun.h"
+#include "../Gun.h"
 
 // Sets default values
 AShooter::AShooter()
