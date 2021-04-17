@@ -35,7 +35,8 @@ private:
 	void LookRight(float AxisValue);
 	void GamepadLookUp(float AxisValue);
 	void GamepadLookRight(float AxisValue);
-
+	void Shoot();
+	
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 50;
 

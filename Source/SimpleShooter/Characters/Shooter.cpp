@@ -44,6 +44,7 @@ void AShooter::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAxis(TEXT("GamepadLookUp"), this, &AShooter::GamepadLookUp);
 	PlayerInputComponent->BindAxis(TEXT("GamepadLookRight"), this, &AShooter::GamepadLookRight);
+	PlayerInputComponent->BindAction(TEXT("Shoot"), EInputEvent::IE_Pressed, this, &AShooter::Shoot);
 }
 
 void AShooter::MoveForward(float AxisValue)
@@ -74,4 +75,10 @@ void AShooter::GamepadLookUp(float AxisValue)
 void AShooter::GamepadLookRight(float AxisValue) 
 {
 	AddControllerYawInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AShooter::Shoot() 
+{
+	UE_LOG(LogTemp, Warning, TEXT("Hello"));
+	Gun->PullTrigger();
 }
