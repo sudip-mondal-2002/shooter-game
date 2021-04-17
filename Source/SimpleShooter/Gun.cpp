@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Gun.h"
-
+#include "Kismet/GameplayStatics.h"
 #include "Components/SkeletalMeshComponent.h"
 
 // Sets default values
@@ -20,7 +20,7 @@ AGun::AGun()
 
 void AGun::PullTrigger() 
 {
-	UE_LOG(LogTemp, Warning, TEXT("You've been shot!"));
+	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
 }
 
 // Called when the game starts or when spawned

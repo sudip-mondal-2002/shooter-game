@@ -79,6 +79,5 @@ void AShooter::GamepadLookRight(float AxisValue)
 
 void AShooter::Shoot() 
 {
-	UE_LOG(LogTemp, Warning, TEXT("Hello"));
 	Gun->PullTrigger();
 }
