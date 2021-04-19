@@ -5,6 +5,7 @@
 #include "Engine/World.h"
 #include "../Gun.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "GameFramework/Character.h"
 
 // Sets default values
 AShooter::AShooter()
@@ -17,6 +18,8 @@ AShooter::AShooter()
 void AShooter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Health = MaxHealth;
 
 	Gun = GetWorld()->SpawnActor<AGun>(GunClass);
 
@@ -80,4 +83,14 @@ void AShooter::GamepadLookRight(float AxisValue)
 void AShooter::Shoot() 
 {
 	Gun->PullTrigger();
+}
+
+float AShooter::TakeDamage(float DamageAmount, struct FDamageEvent const &DamageEvent, class AController *EventInstigator, AActor *DamageCauser) 
+{
+	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	DamageToApply = FMath::Min(Health, DamageToApply);
+	Health -= DamageToApply;
+	UE_LOG(LogTemp, Warning, TEXT("Health left %f"), Health);
+
+	return DamageToApply;
 }
