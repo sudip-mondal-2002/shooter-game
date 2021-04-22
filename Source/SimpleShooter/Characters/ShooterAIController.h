@@ -23,6 +23,6 @@ private:
 	APawn *PlayerPawn;
 	
 	UPROPERTY(EditAnywhere)
-	float AcceptanceRadius = 400;
+	class UBehaviorTree* AIBehavior; 
 
 };
