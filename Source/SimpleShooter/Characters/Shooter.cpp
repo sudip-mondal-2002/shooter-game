@@ -6,6 +6,7 @@
 #include "../Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Character.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AShooter::AShooter()
@@ -92,7 +93,14 @@ float AShooter::TakeDamage(float DamageAmount, struct FDamageEvent const &Damage
 	Health -= DamageToApply;
 	UE_LOG(LogTemp, Warning, TEXT("Health left %f"), Health);
 
+	if (IsDead())
+	{
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+
 	return DamageToApply;
+
 }
 
 bool AShooter::IsDead() const
