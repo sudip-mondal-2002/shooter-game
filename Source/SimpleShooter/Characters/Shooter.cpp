@@ -27,7 +27,6 @@ void AShooter::BeginPlay()
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Gun->SetOwner(this);
-
 }
 
 // Called every frame
@@ -56,37 +55,37 @@ void AShooter::MoveForward(float AxisValue)
 	AddMovementInput(GetActorForwardVector() * AxisValue);
 }
 
-void AShooter::LookUp(float AxisValue) 
+void AShooter::LookUp(float AxisValue)
 {
 	AddControllerPitchInput(AxisValue);
 }
 
-void AShooter::MoveRight(float AxisValue) 
+void AShooter::MoveRight(float AxisValue)
 {
 	AddMovementInput(GetActorRightVector() * AxisValue);
 }
 
-void AShooter::LookRight(float AxisValue) 
+void AShooter::LookRight(float AxisValue)
 {
 	AddControllerYawInput(AxisValue);
 }
 
-void AShooter::GamepadLookUp(float AxisValue) 
+void AShooter::GamepadLookUp(float AxisValue)
 {
 	AddControllerPitchInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
 }
 
-void AShooter::GamepadLookRight(float AxisValue) 
+void AShooter::GamepadLookRight(float AxisValue)
 {
 	AddControllerYawInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
 }
 
-void AShooter::Shoot() 
+void AShooter::Shoot()
 {
 	Gun->PullTrigger();
 }
 
-float AShooter::TakeDamage(float DamageAmount, struct FDamageEvent const &DamageEvent, class AController *EventInstigator, AActor *DamageCauser) 
+float AShooter::TakeDamage(float DamageAmount, struct FDamageEvent const &DamageEvent, class AController *EventInstigator, AActor *DamageCauser)
 {
 	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
@@ -95,18 +94,16 @@ float AShooter::TakeDamage(float DamageAmount, struct FDamageEvent const &Damage
 
 	if (IsDead())
 	{
-		ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
+		ASimpleShooterGameModeBase *GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
 		if (GameMode != nullptr)
 		{
 			GameMode->PawnKilled(this);
 		}
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
 	}
 
 	return DamageToApply;
-
 }
 
 bool AShooter::IsDead() const

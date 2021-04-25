@@ -4,12 +4,12 @@
 #include "AIController.h"
 #include "Shooter.h"
 
-UBTTask_Shoot::UBTTask_Shoot() 
+UBTTask_Shoot::UBTTask_Shoot()
 {
     NodeName = "Shoot";
 }
 
-EBTNodeResult::Type UBTTask_Shoot::ExecuteTask(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory) 
+EBTNodeResult::Type UBTTask_Shoot::ExecuteTask(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory)
 {
     Super::ExecuteTask(OwnerComp, NodeMemory);
 
@@ -18,7 +18,7 @@ EBTNodeResult::Type UBTTask_Shoot::ExecuteTask(UBehaviorTreeComponent &OwnerComp
         return EBTNodeResult::Failed;
     }
 
-    AShooter* Character = Cast<AShooter>(OwnerComp.GetAIOwner()->GetPawn());
+    AShooter *Character = Cast<AShooter>(OwnerComp.GetAIOwner()->GetPawn());
     if (Character == nullptr)
     {
         return EBTNodeResult::Failed;

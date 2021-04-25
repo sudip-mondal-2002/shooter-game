@@ -6,12 +6,12 @@
 #include "GameFramework/Pawn.h"
 #include "AIController.h"
 
-UBTService_PlayerLocationIfSeen::UBTService_PlayerLocationIfSeen() 
+UBTService_PlayerLocationIfSeen::UBTService_PlayerLocationIfSeen()
 {
     NodeName = "Update Player Location If Seen";
 }
 
-void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory, float DeltaSeconds) 
+void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory, float DeltaSeconds)
 {
     Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 

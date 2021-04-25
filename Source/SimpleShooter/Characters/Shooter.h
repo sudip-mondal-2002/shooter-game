@@ -22,7 +22,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
@@ -43,7 +42,7 @@ private:
 	void LookRight(float AxisValue);
 	void GamepadLookUp(float AxisValue);
 	void GamepadLookRight(float AxisValue);
-	
+
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 50;
 
@@ -51,12 +50,11 @@ private:
 	TSubclassOf<AGun> GunClass;
 
 	UPROPERTY()
-	AGun* Gun;
+	AGun *Gun;
 
 	UPROPERTY(EditDefaultsOnly)
 	float MaxHealth = 100;
 
 	UPROPERTY(VisibleAnywhere)
 	float Health;
-
 };

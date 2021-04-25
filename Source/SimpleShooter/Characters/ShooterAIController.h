@@ -16,14 +16,13 @@ class SIMPLESHOOTER_API AShooterAIController : public AAIController
 public:
 	virtual void Tick(float DeltaSeconds) override;
 	bool IsDead() const;
-	
+
 protected:
 	virtual void BeginPlay() override;
 
 private:
 	APawn *PlayerPawn;
-	
-	UPROPERTY(EditAnywhere)
-	class UBehaviorTree* AIBehavior; 
 
+	UPROPERTY(EditAnywhere)
+	class UBehaviorTree *AIBehavior;
 };

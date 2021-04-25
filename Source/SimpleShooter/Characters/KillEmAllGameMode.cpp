@@ -14,21 +14,20 @@ void AKillEmAllGameMode::PawnKilled(APawn *PawnKilled)
     {
         EndGame(false);
     }
-    for (AShooterAIController* Controller : TActorRange<AShooterAIController>(GetWorld()))
+    for (AShooterAIController *Controller : TActorRange<AShooterAIController>(GetWorld()))
     {
         if (!Controller->IsDead())
         {
             return;
         }
     }
-    
-    EndGame(true);
 
+    EndGame(true);
 }
 
-void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner) 
+void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner)
 {
-    for (AController* Controller : TActorRange<AController>(GetWorld()))
+    for (AController *Controller : TActorRange<AController>(GetWorld()))
     {
         bool bIsWinner = Controller->IsPlayerController() == bIsPlayerWinner;
         Controller->GameHasEnded(Controller->GetPawn(), bIsWinner);
