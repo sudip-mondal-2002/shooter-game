@@ -7,7 +7,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
-
+#include "../SimpleShooterGameModeBase.h"
 // Sets default values
 AShooter::AShooter()
 {
@@ -97,6 +97,12 @@ float AShooter::TakeDamage(float DamageAmount, struct FDamageEvent const &Damage
 	{
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		ASimpleShooterGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ASimpleShooterGameModeBase>();
+		if (GameMode != nullptr)
+		{
+			GameMode->PawnKilled(this);
+		}
+
 	}
 
 	return DamageToApply;
